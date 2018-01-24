@@ -1,0 +1,22 @@
+h1, h2, h3 {
+	color: red;
+	text-transform: capitalize;
+}
+section {
+	font-family: Roboto;
+	font-size: 12px;
+	margin-left: 5%;
+}
+a {
+	text-transform: capitalize;
+	text-decoration: none;
+}
+figcaption {
+	color: darkblue;
+}
+li {
+	list-style: none;
+}
+body {
+	background-image: url("./halftone-yellow/halftone-yellow.png");
+}
