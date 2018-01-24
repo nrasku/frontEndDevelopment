@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	     <title>HTML Video Exercise</title>
+	     <link rel="stylesheet" href="./defaultStyle.css">
+	     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	     <meta charset="UTF-8">
+	     <script src="dragAndDrop.js"></script>
+	</head>
+
+	<body>
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+			<label>Shopping Basket</label>
+		</div>
+		<label>Products:</label>
+		<p id="item-1" draggable="true" ondragstart="drag(event)">Galaxy S8</p>
+		<p id="item-2" draggable="true" ondragstart="drag(event)">iPhone X</p>
+		<p id="item-3" draggable="true" ondragstart="drag(event)">OnePlus 5T</p>
+		<p id="item-4" draggable="true" ondragstart="drag(event)">Sony Xperia XZ</p>
+		<p id="item-5" draggable="true" ondragstart="drag(event)">Google Pixel 2</p>
+	</body>
+
+</html>
