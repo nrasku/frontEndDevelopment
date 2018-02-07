@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Using jquery</title>  
+	  <meta charset="utf-8">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	</head>
+	<body>
+
+		<div class="container">
+			<div class="rounded col-1 bg-primary text-white" style="padding: 10px;" id="resultContainer">
+				<span id="result"></span>
+			</div>
+			
+			<div class="form-group col-2">
+			  <label for="number1"></label>
+			  <input type="number" class="form-control" id="number1">
+			</div>
+			<div class="form-grop col-2">
+			  <label for="number2"></label>
+			  <input type="number" class="form-control" id="number2">
+			</div>
+			<div class="form-group col-2 mt-4">
+				<button type="button" class="btn-success" id="add" >+</button>
+				<button type="button" class="btn-danger" id="substract" >-</button>
+			</div>
+
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+		<script>
+		  $(document).ready(function() {
+		    $("button#add").click(function() {
+		    	var num1 = parseInt($("#number1").val());
+		    	var num2 = parseInt($("#number2").val());
+		    	var result = num1 + num2;
+		    	console.log(num1 + "\n" + num2 );
+		    	$("span#result").text(result);
+		    })
+		    $("button#substract").click(function() {
+		    	var num1 = parseInt($("#number1").val());
+		    	var num2 = parseInt($("#number2").val());
+		    	var result = num1 - num2;
+		    	$("span#result").text(result);
+		    })
+		  });
+		</script>
+	</body>
+</html>

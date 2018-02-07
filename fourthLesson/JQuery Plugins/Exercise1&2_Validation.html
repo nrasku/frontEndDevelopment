@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Using jquery</title>  
+	  <meta charset="utf-8">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+	</head>
+	<body>
+
+		<div class="container">
+	      <form class="cmxform" id="commentForm" method="get" action="">
+			    <div class="row">
+		          <div class="col">
+		            <div class="form-group">
+		                <label for="cfirstName">First Name</label>
+		                <input type="text" class="form-control" id="cfirstName" minlength="2" maxlength="40"  title=" Enter Name" required>
+		            </div>
+		          </div>
+		         <div class="col">
+		            <div class="form-group">
+		                <label for="clastName">Last Name</label>
+		                <input type="text" class="form-control" id="clastName" minlength="2" maxlength="40"  title=" Enter Name" required>
+		            </div>
+		          </div>
+		        </div>
+			    <div class="form-group">
+		          <label for="cstreetAddress">Street Address</label>
+		          <input type="text" class="form-control" id="cstreetAddress"  minlength="5" maxlength="50" title=" Enter Address" required>
+		        </div>
+		        <div class="row">
+		          <div class="col">
+		            <div class="form-group">
+		                <label for="postCode">Postal Code</label>
+		                <input type="text" class="form-control" id="postCode" title="Enter Post Code" required>
+		            </div>
+		          </div>
+		         <div class="col">
+		            <div class="form-group">
+		                <label for="country">Country</label>
+		                <select class="form-control" id="country"  title="Enter Country" required>
+		                </select>
+		            </div>
+		          </div>
+		        </div>
+		        <div class="row">
+		          <div class="col">
+		            <div class="form-group">
+		                <label for="company">Company</label>
+		                <input type="text" class="form-control" id="company"  title="Enter Company" required>
+		            </div>
+		          </div>
+		         <div class="col">
+		            <div class="form-group">
+		                <label for="email">Email Address</label>
+		                <input type="email" class="form-control" id="email"  title="Enter Email Address" required>
+		            </div>
+		          </div>
+		        </div>
+		        <div class="form-radio">
+		          <label>Payment Method</label>
+		          <div class="radio">
+		          <label><input type="radio" name="optradio" required>Mastercard</label>
+		          </div>
+		          <div class="radio">
+		            <label><input type="radio" name="optradio" required>Visa</label>
+		          </div>
+		          <div class="radio">
+		            <label><input type="radio" name="optradio" required>Billing</label>
+		          </div>
+		        </div>
+		        <button type="submit" class="btn btn-primary" >Submit</button>
+			</form>
+	    </div>
+		<script>
+			$(document).ready(function() {
+				$("#myForm").validate({
+				  rules: {
+				    postCode: {
+				      required: true,
+				      digits: true
+				    },
+				  	email: {
+				  		email: true,
+				  		required: true
+				  	}
+				  }
+				});
+
+				$.get("https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-name.json", function(data) {
+						$.each($.parseJSON(data), function(key, value) {
+							console.log(value)
+						    $("select#country").append('<option value=' + key + '>' + value.country + '</option>');
+						});
+				})
+
+				$("#country").select2({
+			                placeholder: "Select a country"
+	            });
+
+			})
+		</script>
+	</body>
+</html>

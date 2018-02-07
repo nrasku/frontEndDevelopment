@@ -1,0 +1,25 @@
+Exercise 1 
+    a) $("")
+    b) $("p:first")
+    c) $("p#id")
+
+Exercise 2
+    a) $("p").text("New Text")
+    b) $("p").append("<span>Appended!</span>")
+    c) $("p.red").css('color', 'red')
+
+
+Exercise 3
+	a) $("p:first").click(function() {
+		  $(this).hide();
+	   })
+	b) $("p").dblclick(function() {
+		  $(this).hide();
+	   })
+	c) $("button.hider").click(function() {
+          $("p").hide();
+	   })
+	d) $("button.alerter").click(function() {
+		  var parText = $("p:first").text();
+		  alert(parText);
+	   })

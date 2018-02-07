@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Using jquery</title>  
+	  <meta charset="utf-8">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <link  href="https://unpkg.com/nanogallery2@2.0.0/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
+      <script  type="text/javascript" src="https://unpkg.com/nanogallery2@2.0.0/dist/jquery.nanogallery2.min.js"></script>
+
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container">
+
+			<div id="nanogallery2">Practice Gallery</div>
+			
+
+		</div>
+
+		<script>
+         jQuery(document).ready(function () {
+
+            jQuery("#nanogallery2").nanogallery2( {
+                thumbnailHeight:  350,
+                thumbnailWidth:   350,
+                itemsBaseURL:     'http://nanogallery2.nanostudio.org/samples/',
+                
+                items: [
+                    { src: 'http://www.uniwallpaper.com/static/images/potd-squirrel_3594124k.jpg', title: 'Private' },
+                    { src: 'http://www.uniwallpaper.com/static/images/sunrise-phu-quoc-island-ocean.jpg', title: 'Lit' },
+                    { src: 'http://www.uniwallpaper.com/static/images/wallpaper-2594020_1wgPZqQ_b45cJ02.jpg', title: 'Soggy' },
+                    { src: 'https://static.independent.co.uk/s3fs-public/styles/story_large/public/thumbnails/image/2015/10/04/12/emirates-view-arsenal.jpg', title: 'N. London' }
+                  ]
+              });
+          });
+        </script>
+
+	</body>
+
+</html>
