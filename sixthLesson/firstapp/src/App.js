@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import TodoTable from './TodoTable';
+import TodoList from './TodoList';
 
 class App extends Component {
    constructor(props) {
@@ -40,7 +41,7 @@ class App extends Component {
           </form>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center'}}>
-          <TodoTable todos={this.state.todos} deleteTodo={this.deleteTodo} />
+          <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo} />
         </div>          
       </div>    
     );
