@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TodoTable from './TodoTable';
 
 class App extends Component {
    constructor(props) {
@@ -39,18 +40,7 @@ class App extends Component {
           </form>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center'}}>
-          <table>
-            <tbody>
-              <tr><th>Date</th><th>Description</th></tr>
-              {this.state.todos.map((item, index) => 
-                <tr key={index}>
-                  <td>{item.date}</td>
-                  <td>{item.description}</td>
-                  <td><button id={index} onClick={this.deleteTodo.bind(this)}>Delete</button></td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+          <TodoTable todos={this.state.todos} deleteTodo={this.deleteTodo} />
         </div>          
       </div>    
     );
