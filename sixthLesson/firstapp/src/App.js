@@ -18,12 +18,18 @@ class App extends Component {
       todos: [...this.state.todos, { description: this.state.description, date: this.state.date } ]
     });
   }
+  deleteTodo = (e) => {
+    let delIndex = Number(e.target.id)
+    e.preventDefault();
+    this.setState({todos: this.state.todos.filter((todo, i) => i !== delIndex)})
+  }
 
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <h2>Simple Todolist</h2>
+          <img src={logo} className="App-logo" alt="logo" />
         </div>
         <div>
           <form onSubmit={this.addTodo}>
@@ -40,6 +46,7 @@ class App extends Component {
                 <tr key={index}>
                   <td>{item.date}</td>
                   <td>{item.description}</td>
+                  <td><button id={index} onClick={this.deleteTodo.bind(this)}>Delete</button></td>
                 </tr>
               )}
             </tbody>
