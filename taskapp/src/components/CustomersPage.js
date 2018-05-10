@@ -6,7 +6,7 @@ class CustomersPage extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = {customers: []}
+		this.state = {customers: [], customer: ''}
 	}
 
 	componentDidMount() {
@@ -14,6 +14,7 @@ class CustomersPage extends Component {
 	}
 
 	getCustomers() {
+		console.log("FETCHING!!!!")
 		Customer.get()
 			.then( response => {
 					this.setState({
@@ -45,6 +46,18 @@ class CustomersPage extends Component {
 		})
 	}
 
+	deleteCustomer = async (id) => {
+		let customer = await Customer.find(id)
+		customer.id = id
+		customer.delete()
+		.then((response) => {
+        	this.getCustomers()
+        }).catch(err => {
+			console.error("Error caught while DELETING: ", err);
+		})
+		
+	}
+
 	getId = (link) => {
 		let parts = link.split('/');
 		return parts[parts.length - 1];	
@@ -57,7 +70,8 @@ class CustomersPage extends Component {
 				<div className="row">
 					<AddCustomer addCustomer={this.addCustomer} /> 
 				</div>
-                <CustomersList customers={this.state.customers} updateCustomer={this.updateCustomer} getId={this.getId} />
+                <CustomersList customers={this.state.customers} updateCustomer={this.updateCustomer} deleteCustomer={this.deleteCustomer}
+                getId={this.getId} />
 			</div>
 		);
 	}

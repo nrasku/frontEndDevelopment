@@ -21,11 +21,11 @@ export default class CustomersList extends React.Component {
 			{Header: 'City', accessor: 'city'},
 			{Header: 'Email', accessor: 'email'},
 			{Header: 'Phone', accessor: 'phone'},
-			{Header: "", accessor: "_links.self.href",
+			{Header: "", accessor: "links",
 			 filterable: false,
 				Cell: ({value}) => (
 					<Button bsStyle="danger"
-							onClick = {() => { this.deleteCar(value) }}>Delete</Button>
+							onClick = {() => { this.props.deleteCustomer(this.props.getId(value[0].href)) }}>Delete</Button>
 					)},
 			{Header: "", accessor: "links",
 			 filterable: false,
