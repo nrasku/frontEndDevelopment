@@ -7131,6 +7131,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-api-query@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/vue-api-query/-/vue-api-query-0.5.0.tgz#c7b122af172bdc4549f864ea671d7e1f9e670a5b"
+
 walker@~1.0.5:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/walker/-/walker-1.0.7.tgz#2f7f9b8fd10d677262b18a884e28d19618e028fb"

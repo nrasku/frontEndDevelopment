@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CustomersList from '../partials/CustomersList';
 import API from 'api-class';
+import Customer from '../models/Customer';
 
 const myApi = new API({ url:'https://customerrest.herokuapp.com/api' })
 
@@ -17,17 +18,25 @@ class CustomersPage extends Component {
 	}
 
 	getCustomers() {
-		myApi.endpoints.customers.getAll()
+		Customer.get()
 			.then( response => {
 					this.setState({
-						customers: response.data.content
+						customers: response[0].content
 					});
-				});
+			}).catch(err => {
+			console.error("Error caught while FETCHING: ", err);
+		})
 	}
 
 	updateCustomer = (customer) => {
-		myApi.endpoints.customers.update(customer)
-		this.getCustomers()
+		customer = new Customer(customer)
+		customer.save()
+		.then( response => {
+		    this.getCustomers()
+		})
+		.catch(err => {
+			console.error("Error caught while FETCHING: ", err);
+		})
 	}
 
 	render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTable from 'react-table';
 import API from 'api-class';
+import Customer from '../models/Customer';
 
 const myApi = new API({ url:'https://customerrest.herokuapp.com/api' })
 
@@ -17,15 +18,22 @@ export default class ClassList extends React.Component{
     this.getClasses();
   }
 
-  getClasses() {
-    let query = `${this.props.id}/trainings`
-    console.log(query)
-    myApi.endpoints.customers.getAll(`${this.props.id}/trainings`)
-      .then( response => {
+  async getClasses() {
+    let customer = await Customer.find(this.props.id)
+    customer.id = this.props.id
+    if (customer) {
+        customer.classes().get()
+        .then(response => {
           this.setState({
-            classes: response.data.content
-          });
-        });
+            classes: response[0].content
+          })
+        }).catch(err => {
+          console.error("Error caught while FETCHING: ", err);
+        }) 
+    } else {
+      console.log("Could find customer")
+    }
+
   }
 
 
@@ -50,13 +58,7 @@ export default class ClassList extends React.Component{
           columns={columns}
           defaultPageSize={3}
           showPagination={false}
-          SubComponent={row => {
-            return (
-              <div style={{ padding: "20px" }}>
-                Another Sub Component!
-              </div>
-            );
-          }}
+          
         />
       </div>
     );

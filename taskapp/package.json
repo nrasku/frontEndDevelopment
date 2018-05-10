@@ -18,7 +18,8 @@
     "react-table": "^6.8.2",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "vue-api-query": "^0.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
