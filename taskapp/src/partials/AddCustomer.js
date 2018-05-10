@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
 
-export default class AddCar extends Component {
+export default class AddCustomer extends Component {
 
 	constructor(props) {
 		super(props);
@@ -35,7 +35,7 @@ export default class AddCar extends Component {
 	render() {
 		return (
 			<div>
-				 <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Provide information for the new car">
+				 <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Provide information for the new customer">
 		          <form>
 		          	<div className="form-group">
 		          		<input placeholder="First Name" value={this.state.firstname} className="form-control" 

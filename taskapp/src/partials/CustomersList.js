@@ -41,8 +41,9 @@ export default class CustomersList extends React.Component {
 					filterable
 					SubComponent={row => (
 				        <ClassList
-				          trainings={row.original.links[2].href}
+				          customer={row.original.links[0].href}
 				          id={this.props.getId(row.original.links[0].href)}
+				          getId={this.props.getId}
 				        />
 				    )}
 			    />

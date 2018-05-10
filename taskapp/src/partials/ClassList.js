@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactTable from 'react-table';
+import { Button } from 'react-bootstrap';
 import Customer from '../models/Customer';
+import Class from '../models/Class';
+import AddClass from './AddClass';
 
 import moment from 'moment';
 
@@ -9,13 +12,14 @@ export default class ClassList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {classes: []}
+    this.getClasses = this.getClasses.bind(this);
   }
 
   componentDidMount() {
     this.getClasses();
   }
 
-  async getClasses() {
+  getClasses = async () => {
     let customer = await Customer.find(this.props.id)
     customer.id = this.props.id
     if (customer) {
@@ -24,7 +28,6 @@ export default class ClassList extends React.Component{
           this.setState({
             classes: response[0].content
           })
-          this.formatDate()
         }).catch(err => {
           console.error("Error caught while FETCHING: ", err);
         }) 
@@ -34,10 +37,30 @@ export default class ClassList extends React.Component{
 
   }
 
-  formatDate() {
-    
+  addClass = (newClass) => {
+    newClass = new Class(newClass)
+    console.log(newClass)
+    newClass.save()
+    .then(response => {
+      this.getClasses()
+    }).catch(err => {
+      console.error("Error caught while CREATING: ", err);
+    })
   }
 
+  deleteClass = async (id) => {
+    let classToDelete = await Class.find(id)
+    classToDelete.id = id
+    console.log(classToDelete)
+    classToDelete.delete()
+    .then((response) => {
+          this.getClasses()
+        }).catch(err => {
+      console.error("Error caught while DELETING: ", err);
+    })
+  }
+
+ 
 
   render() {
     const columns = [
@@ -47,7 +70,13 @@ export default class ClassList extends React.Component{
           )},
       {Header: 'Duration', accessor: 'duration'},
       {Header: 'Activity', accessor: 'activity'},
-      {Header: 'Content', accessor: 'content'}
+      {Header: 'Content', accessor: 'content'},
+      {Header: "", accessor: "links",
+       filterable: false,
+        Cell: ({value}) => (
+          <Button bsStyle="danger"
+              onClick = {() => { this.deleteClass(this.props.getId(value[0].href))}}>Delete</Button>
+          )},
     ]
 
     console.log(this.props);
@@ -60,11 +89,14 @@ export default class ClassList extends React.Component{
         <br />
         <br />
         <ReactTable data={this.state.classes}
+          style="color: red;"
           columns={columns}
           defaultPageSize={3}
-          showPagination={false}
           
         />
+        <div className="row">
+          <AddClass addClass={this.addClass} customerLink={this.props.customer} /> 
+        </div>
       </div>
     );
   }
