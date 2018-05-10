@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import API from 'api-class';
-
-const myApi = new API({ url:'https://customerrest.herokuapp.com/api' })
 
 export default class ClassPage extends Component {
 
@@ -11,17 +8,11 @@ export default class ClassPage extends Component {
 	}
 
 	componentDidMount() {
-		myApi.createEntity({ name: 'classes' })
 		this.getCustomers();
 	}
 
 	getClasses() {
-		myApi.endpoints.customers.getAll()
-			.then( response => {
-					this.setState({
-						customers: response.data.content
-					});
-				});
+		
 	}
 
 	render() {

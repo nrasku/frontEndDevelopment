@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactTable from 'react-table';
-import API from 'api-class';
 import Customer from '../models/Customer';
 
-const myApi = new API({ url:'https://customerrest.herokuapp.com/api' })
-
+import moment from 'moment';
 
 export default class ClassList extends React.Component{
 
@@ -14,7 +12,6 @@ export default class ClassList extends React.Component{
   }
 
   componentDidMount() {
-    myApi.createEntity({ name: 'customers' })
     this.getClasses();
   }
 
@@ -27,6 +24,7 @@ export default class ClassList extends React.Component{
           this.setState({
             classes: response[0].content
           })
+          this.formatDate()
         }).catch(err => {
           console.error("Error caught while FETCHING: ", err);
         }) 
@@ -36,10 +34,17 @@ export default class ClassList extends React.Component{
 
   }
 
+  formatDate() {
+    
+  }
+
 
   render() {
     const columns = [
-      {Header: 'Date', accessor: 'date'},
+      {Header: 'Date', accessor: 'date',
+              Cell: ({value}) => (
+          <div>{moment(value).format('MMMM Do YYYY, h:mm a')}</div>
+          )},
       {Header: 'Duration', accessor: 'duration'},
       {Header: 'Activity', accessor: 'activity'},
       {Header: 'Content', accessor: 'content'}

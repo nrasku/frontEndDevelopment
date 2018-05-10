@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import CustomersList from '../partials/CustomersList';
-import API from 'api-class';
 import Customer from '../models/Customer';
-
-const myApi = new API({ url:'https://customerrest.herokuapp.com/api' })
 
 class CustomersPage extends Component {
 
@@ -13,7 +10,6 @@ class CustomersPage extends Component {
 	}
 
 	componentDidMount() {
-		myApi.createEntity({ name: 'customers' })
 		this.getCustomers();
 	}
 
