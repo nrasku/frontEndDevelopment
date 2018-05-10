@@ -89,7 +89,6 @@ export default class ClassList extends React.Component{
         <br />
         <br />
         <ReactTable data={this.state.classes}
-          style="color: red;"
           columns={columns}
           defaultPageSize={3}
           
