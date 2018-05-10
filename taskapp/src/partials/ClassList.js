@@ -43,7 +43,7 @@ export default class ClassList extends React.Component{
     const columns = [
       {Header: 'Date', accessor: 'date',
               Cell: ({value}) => (
-          <div>{moment(value).format('MMMM Do YYYY, h:mm a')}</div>
+            <div>{value ? moment(value).format('MMMM Do YYYY, h:mm a') : ''}</div>
           )},
       {Header: 'Duration', accessor: 'duration'},
       {Header: 'Activity', accessor: 'activity'},

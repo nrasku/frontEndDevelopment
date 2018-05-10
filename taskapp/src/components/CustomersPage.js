@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CustomersList from '../partials/CustomersList';
 import Customer from '../models/Customer';
-
+import AddCustomer from '../partials/AddCustomer';
 class CustomersPage extends Component {
 
 	constructor(props) {
@@ -31,15 +31,33 @@ class CustomersPage extends Component {
 		    this.getCustomers()
 		})
 		.catch(err => {
-			console.error("Error caught while FETCHING: ", err);
+			console.error("Error caught while UPDATING: ", err);
 		})
+	}
+
+	addCustomer = (customer) => {
+        customer = new Customer(customer)
+        customer.save()
+        .then(response => {
+        	this.getCustomers()
+        }).catch(err => {
+			console.error("Error caught while CREATING: ", err);
+		})
+	}
+
+	getId = (link) => {
+		let parts = link.split('/');
+		return parts[parts.length - 1];	
 	}
 
 	render() {
 		return (
 			<div>
 				<h1>Customer Listing</h1>
-                <CustomersList customers={this.state.customers} updateCustomer={this.updateCustomer} />
+				<div className="row">
+					<AddCustomer addCustomer={this.addCustomer} /> 
+				</div>
+                <CustomersList customers={this.state.customers} updateCustomer={this.updateCustomer} getId={this.getId} />
 			</div>
 		);
 	}

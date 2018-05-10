@@ -29,7 +29,8 @@ export default class CustomersList extends React.Component {
 					)},
 			{Header: "", accessor: "links",
 			 filterable: false,
-				Cell: ({row, value}) => (<EditCustomer updateCustomer={this.props.updateCustomer} id={value[0].href.slice(-1)} customer={row} />)}
+				Cell: ({row, value}) => (<EditCustomer updateCustomer={this.props.updateCustomer} id={this.props.getId(value[0].href)} 
+						customer={row} />)}
 		]
 
 		return (
@@ -41,7 +42,7 @@ export default class CustomersList extends React.Component {
 					SubComponent={row => (
 				        <ClassList
 				          trainings={row.original.links[2].href}
-				          id={row.original.links[0].href.slice(-1)}
+				          id={this.props.getId(row.original.links[0].href)}
 				        />
 				    )}
 			    />
