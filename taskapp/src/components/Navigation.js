@@ -15,9 +15,6 @@ export default class Navigation extends Component {
 			    <NavItem eventKey={1} href="#">
 			      <Link to='customers'>Customer List</Link>
 			    </NavItem>
-			    <NavItem eventKey={2} href="#">
-			      <Link to='classes'>Class List</Link>
-			    </NavItem>
 			  </Nav>
 			</Navbar>
 		);
