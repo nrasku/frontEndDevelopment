@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Navigation from './components/Navigation';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
 
 import Home from './components/Home';
 import CustomersPage from './components/CustomersPage'
@@ -23,6 +24,7 @@ class App extends Component {
               Please select a service from the above navigation
             </p>
             { this.props.children }
+            <ToastContainer />
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route exact path="/customers" component={CustomersPage} />

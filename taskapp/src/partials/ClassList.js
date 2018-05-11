@@ -4,6 +4,8 @@ import { Button } from 'react-bootstrap';
 import Customer from '../models/Customer';
 import Class from '../models/Class';
 import AddClass from './AddClass';
+import { toast } from 'react-toastify';
+import { confirmAlert } from 'react-confirm-alert'; 
 
 import moment from 'moment';
 
@@ -43,21 +45,49 @@ export default class ClassList extends React.Component{
     newClass.save()
     .then(response => {
       this.getClasses()
+      console.log(toast)
+      toast.success("Class added!", {
+          position: toast.POSITION.TOP_CENTER
+        });
     }).catch(err => {
       console.error("Error caught while CREATING: ", err);
+      toast.error("Error While creating class...", {
+        position: toast.POSITION.TOP_CENTER
+      })
     })
   }
 
   deleteClass = async (id) => {
     let classToDelete = await Class.find(id)
     classToDelete.id = id
-    console.log(classToDelete)
-    classToDelete.delete()
-    .then((response) => {
-          this.getClasses()
-        }).catch(err => {
-      console.error("Error caught while DELETING: ", err);
+    confirmAlert({ 
+      title: 'Confirm to submit',
+          message: 'Are you sure you want to delete?',
+          buttons: [
+            {
+              label: 'Yes',
+              onClick: () => classToDelete.delete()
+                            .then((response) => {
+                                  this.getClasses()
+                                  toast.success("Class deleted!", {
+                                              position: toast.POSITION.TOP_CENTER
+                                            });
+                                }).catch(err => {
+                              console.error("Error caught while DELETING: ", err);
+                              toast.error("Error while deleting class...", {
+                                            position: toast.POSITION.TOP_CENTER
+                                          })
+                            })
+            },
+            {
+              label: 'No',
+              onClick: () => toast.info("Customer was not deleted.", {
+                position: toast.POSITION.TOP_CENTER
+              })
+            }
+          ]
     })
+    
   }
 
  

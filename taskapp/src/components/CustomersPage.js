@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import CustomersList from '../partials/CustomersList';
 import Customer from '../models/Customer';
 import AddCustomer from '../partials/AddCustomer';
+import { toast } from 'react-toastify';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'
+
+import 'react-toastify/dist/ReactToastify.css';
+
 class CustomersPage extends Component {
 
 	constructor(props) {
@@ -30,9 +36,15 @@ class CustomersPage extends Component {
 		customer.save()
 		.then( response => {
 		    this.getCustomers()
+		    toast.success("Customer updated!", {
+		      position: toast.POSITION.TOP_CENTER
+		    });
 		})
 		.catch(err => {
 			console.error("Error caught while UPDATING: ", err);
+			toast.error("Error While updating car...", {
+				position: toast.POSITION.TOP_CENTER
+			})
 		})
 	}
 
@@ -41,19 +53,46 @@ class CustomersPage extends Component {
         customer.save()
         .then(response => {
         	this.getCustomers()
+        	toast.success("Customer added!", {
+		      position: toast.POSITION.TOP_CENTER
+		    });
         }).catch(err => {
 			console.error("Error caught while CREATING: ", err);
+			toast.error("Error While creating customer...", {
+				position: toast.POSITION.TOP_CENTER
+			})
 		})
 	}
 
 	deleteCustomer = async (id) => {
 		let customer = await Customer.find(id)
 		customer.id = id
-		customer.delete()
-		.then((response) => {
-        	this.getCustomers()
-        }).catch(err => {
-			console.error("Error caught while DELETING: ", err);
+		confirmAlert({ 
+			title: 'Confirm to submit',
+		      message: 'Are you sure you want to delete?',
+		      buttons: [
+		        {
+		          label: 'Yes',
+		          onClick: () => customer.delete()
+								.then((response) => {
+						        	this.getCustomers()
+						        	toast.success("Customer deleted!", {
+								      position: toast.POSITION.TOP_CENTER
+								    });
+						        }).catch(err => {
+									console.error("Error caught while DELETING: ", err);
+									toast.error("Error While deleting customer...", {
+										position: toast.POSITION.TOP_CENTER
+									})
+								})
+		        },
+		        {
+		          label: 'No',
+		          onClick: () => toast.info("Customer was not deleted.", {
+		          	position: toast.POSITION.TOP_CENTER
+		          })
+		        }
+		      ]
 		})
 		
 	}
