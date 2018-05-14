@@ -20,7 +20,6 @@ class CustomersPage extends Component {
 	}
 
 	getCustomers() {
-		console.log("FETCHING!!!!")
 		Customer.get()
 			.then( response => {
 					this.setState({

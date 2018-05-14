@@ -37,7 +37,6 @@ export default class EditCustomer extends Component {
 	}
 
 	render() {
-		console.log(this.props)
 		return (
 			<div>
 				 <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Change the car's information">

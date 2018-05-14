@@ -40,11 +40,13 @@ export default class CustomersList extends React.Component {
 					className="-striped -highlight" 
 					filterable
 					SubComponent={row => (
-				        <ClassList
-				          customer={row.original.links[0].href}
-				          id={this.props.getId(row.original.links[0].href)}
-				          getId={this.props.getId}
-				        />
+						<div>
+					        <ClassList
+					          customer={row.original.links[0].href}
+					          id={this.props.getId(row.original.links[0].href)}
+					          getId={this.props.getId}
+					        />
+					    </div>
 				    )}
 			    />
 			</div>

@@ -6,6 +6,7 @@ import Class from '../models/Class';
 import AddClass from './AddClass';
 import { toast } from 'react-toastify';
 import { confirmAlert } from 'react-confirm-alert'; 
+import ClassCalendar from './ClassCalendar';
 
 import moment from 'moment';
 
@@ -109,8 +110,6 @@ export default class ClassList extends React.Component{
           )},
     ]
 
-    console.log(this.props);
-
     return(
       <div style={{ padding: "20px" }}>
         <em>
@@ -125,6 +124,9 @@ export default class ClassList extends React.Component{
         />
         <div className="row">
           <AddClass addClass={this.addClass} customerLink={this.props.customer} /> 
+        </div>
+        <div className="row">
+          <ClassCalendar events={this.state.classes}/>
         </div>
       </div>
     );
