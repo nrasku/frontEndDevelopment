@@ -39,7 +39,7 @@ export default class EditCustomer extends Component {
 	render() {
 		return (
 			<div>
-				 <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Change the car's information">
+				 <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Change the customer's information">
 		          <form>
 		          	<div className="form-group">
 		          		<input placeholder="First Name" value={this.state.firstname} className="form-control" 
