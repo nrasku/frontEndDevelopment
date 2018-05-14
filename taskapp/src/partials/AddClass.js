@@ -3,6 +3,8 @@ import SkyLight from 'react-skylight';
 import moment from 'moment';
 import DateTime from 'react-datetime';
 
+import datetimecss from 'react-datetime/css/react-datetime.css';
+
 export default class AddClass extends Component {
 
 	constructor(props) {

@@ -104,7 +104,7 @@ export default class ClassList extends React.Component{
       {Header: 'Content', accessor: 'content'},
       {Header: "", accessor: "links",
        filterable: false,
-        Cell: ({value}) => (
+        Cell: ({value}) => ( value == null ? null :
           <Button bsStyle="danger"
               onClick = {() => { this.deleteClass(this.props.getId(value[0].href))}}>Delete</Button>
           )},
